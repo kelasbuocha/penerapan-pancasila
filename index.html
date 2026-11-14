@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesmen Formatif PPKn - Paket B</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        /* Custom scrollbar untuk kenyamanan membaca di mobile/desktop */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Animasi transisi halus */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-red-100 selection:text-red-900">
+
+    <!-- Header / Banner -->
+    <header class="bg-gradient-to-r from-red-700 via-red-600 to-rose-700 text-white shadow-md sticky top-0 z-30">
+        <div class="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white/20 p-2 rounded-xl backdrop-blur-sm">
+                    <!-- Icon Garuda / Perisai Pancasila SVG -->
+                    <svg class="w-7 h-7 text-amber-300" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L3 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-9-3zm0 4.6l1.45 2.94 3.24.47-2.35 2.29.55 3.23L12 14l-2.89 1.53.55-3.23-2.35-2.29 3.24-.47L12 6.6z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-red-100 block">Pendidikan Kesetaraan Paket B</span>
+                    <h1 class="text-base sm:text-lg font-bold leading-tight">Asesmen Formatif Pancasila</h1>
+                </div>
+            </div>
+            <div id="header-badge" class="hidden sm:flex items-center bg-white/15 px-3 py-1 rounded-full text-xs font-medium">
+                Topik: Kehidupan Bermasyarakat
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto px-4 py-6 pb-20">
+
+        <!-- Custom Message Box (Pengganti alert) -->
+        <div id="toast-box" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 hidden transition-all duration-300 w-11/12 max-w-md">
+            <div class="bg-slate-900 text-white px-4 py-3.5 rounded-2xl shadow-xl flex items-center space-x-3 border border-slate-700">
+                <svg class="w-6 h-6 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <p id="toast-message" class="text-sm font-medium leading-snug"></p>
+            </div>
+        </div>
+
+        <!-- VIEW 1: IDENTITAS & PETUNJUK PENGERJAAN -->
+        <section id="intro-section" class="space-y-6 fade-in">
+            <!-- Card Identitas -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-7">
+                <div class="border-b border-slate-100 pb-4 mb-5">
+                    <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <span class="w-2 h-6 bg-red-600 rounded-full inline-block"></span>
+                        Identitas Peserta Didik
+                    </h2>
+                    <p class="text-sm text-slate-500 mt-1">Silakan lengkapi data diri Anda sebelum memulai asesmen.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="student-name" class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
+                        <input type="text" id="student-name" placeholder="Contoh: Ahmad Fauzi" 
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition text-base">
+                    </div>
+                    <div>
+                        <label for="student-class" class="block text-sm font-semibold text-slate-700 mb-1.5">Kelas / Tingkatan <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <select id="student-class" 
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition text-base">
+                                <option value="">-- Pilih Kelas --</option>
+                                <option value="Paket B - Kelas 7">Paket B - Kelas 7</option>
+                                <option value="Paket B - Kelas 8">Paket B - Kelas 8</option>
+                                <option value="Paket B - Kelas 9">Paket B - Kelas 9</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-500">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Petunjuk Pengerjaan -->
+            <div class="bg-amber-50/80 rounded-2xl border border-amber-200/80 p-5 sm:p-7">
+                <h3 class="text-base font-bold text-amber-900 flex items-center gap-2 mb-3">
+                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Petunjuk Pengerjaan
+                </h3>
+                <ol class="list-decimal list-inside space-y-2 text-sm sm:text-base text-amber-950/90 leading-relaxed">
+                    <li>Bacalah setiap cerita dengan teliti.</li>
+                    <li>Identifikasilah nilai-nilai Pancasila yang tampak dalam kegiatan tersebut.</li>
+                    <li>Tuliskan sila Pancasila yang sesuai.</li>
+                    <li>Jelaskan perilaku atau tindakan dalam cerita yang mencerminkan nilai sila tersebut.</li>
+                    <li>Gunakan kalimat sendiri dengan jelas dan mudah dipahami.</li>
+                </ol>
+            </div>
+
+            <button onclick="startAssessment()" 
+                class="w-full bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-red-600/20 transition transform active:scale-[0.99] text-base sm:text-lg flex items-center justify-center gap-2">
+                <span>Mulai Mengerjakan Soal</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+        </section>
+
+        <!-- VIEW 2: FORM SOAL ASESMEN -->
+        <section id="quiz-section" class="hidden space-y-8 fade-in">
+            
+            <!-- Info Bar Siswa -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-2 text-sm">
+                <div>
+                    <span class="text-slate-500">Peserta:</span>
+                    <strong id="display-name" class="text-slate-800 ml-1"></strong>
+                </div>
+                <div class="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg font-semibold text-xs" id="display-class"></div>
+            </div>
+
+            <!-- ==================== SOAL 1 ==================== -->
+            <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-800 text-white px-5 py-3.5 flex items-center justify-between">
+                    <h2 class="font-bold text-sm sm:text-base tracking-wide">SOAL 1 – KERUKUNAN DALAM KEBERAGAMAN</h2>
+                    <span class="text-xs bg-white/15 px-2.5 py-1 rounded-full font-medium">Maks. 30 Poin</span>
+                </div>
+                
+                <div class="p-5 sm:p-6 space-y-5">
+                    <!-- Teks Cerita -->
+                    <div class="bg-slate-50 border-l-4 border-red-500 p-4 rounded-r-xl text-sm sm:text-base text-slate-700 leading-relaxed space-y-3">
+                        <p>Di sebuah lingkungan tempat tinggal, terdapat warga yang memiliki agama, suku, dan kebiasaan yang berbeda-beda. Ketika salah satu warga sedang melaksanakan ibadah, warga lainnya tidak mengganggu dan memberikan kesempatan untuk beribadah.</p>
+                        <p>Pada kesempatan lain, warga mengadakan kegiatan gotong royong membersihkan lingkungan. Semua warga ikut bekerja sama tanpa membedakan agama maupun asal daerah. Mereka juga saling membantu ketika ada tetangga yang mengalami kesulitan.</p>
+                    </div>
+
+                    <!-- Pertanyaan Panduan -->
+                    <div class="text-sm text-slate-600 bg-blue-50/70 border border-blue-100 p-3.5 rounded-xl">
+                        <p class="font-semibold text-blue-900 mb-1">Pertanyaan:</p>
+                        <p>a. Identifikasilah <strong>3 nilai Pancasila</strong> yang tampak dalam kegiatan tersebut. Tuliskan sila yang sesuai!</p>
+                        <p>b. Jelaskan perilaku atau tindakan dalam cerita yang mencerminkan masing-masing nilai Pancasila tersebut!</p>
+                    </div>
+
+                    <!-- Input 3 Pasangan Sila & Penjelasan -->
+                    <div class="space-y-4">
+                        <!-- Nilai 1 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-red-600">Temuan Nilai Pancasila ke-1</span>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">a. Sila Pancasila yang sesuai:</label>
+                                <select id="q1_sila_1" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                                    <option value="">-- Pilih Sila Pancasila --</option>
+                                    <option value="1">Sila ke-1: Ketuhanan Yang Maha Esa</option>
+                                    <option value="2">Sila ke-2: Kemanusiaan yang Adil dan Beradab</option>
+                                    <option value="3">Sila ke-3: Persatuan Indonesia</option>
+                                    <option value="4">Sila ke-4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</option>
+                                    <option value="5">Sila ke-5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">b. Penjelasan perilaku/tindakan dalam cerita:</label>
+                                <textarea id="q1_desc_1" rows="2" placeholder="Tuliskan perilaku warga yang mencerminkan sila yang Anda pilih..." 
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Nilai 2 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-red-600">Temuan Nilai Pancasila ke-2</span>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">a. Sila Pancasila yang sesuai:</label>
+                                <select id="q1_sila_2" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                                    <option value="">-- Pilih Sila Pancasila --</option>
+                                    <option value="1">Sila ke-1: Ketuhanan Yang Maha Esa</option>
+                                    <option value="2">Sila ke-2: Kemanusiaan yang Adil dan Beradab</option>
+                                    <option value="3">Sila ke-3: Persatuan Indonesia</option>
+                                    <option value="4">Sila ke-4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</option>
+                                    <option value="5">Sila ke-5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">b. Penjelasan perilaku/tindakan dalam cerita:</label>
+                                <textarea id="q1_desc_2" rows="2" placeholder="Tuliskan perilaku warga yang mencerminkan sila yang Anda pilih..." 
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Nilai 3 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-red-600">Temuan Nilai Pancasila ke-3</span>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">a. Sila Pancasila yang sesuai:</label>
+                                <select id="q1_sila_3" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                                    <option value="">-- Pilih Sila Pancasila --</option>
+                                    <option value="1">Sila ke-1: Ketuhanan Yang Maha Esa</option>
+                                    <option value="2">Sila ke-2: Kemanusiaan yang Adil dan Beradab</option>
+                                    <option value="3">Sila ke-3: Persatuan Indonesia</option>
+                                    <option value="4">Sila ke-4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</option>
+                                    <option value="5">Sila ke-5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">b. Penjelasan perilaku/tindakan dalam cerita:</label>
+                                <textarea id="q1_desc_3" rows="2" placeholder="Tuliskan perilaku warga yang mencerminkan sila yang Anda pilih..." 
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ==================== SOAL 2 ==================== -->
+            <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-800 text-white px-5 py-3.5 flex items-center justify-between">
+                    <h2 class="font-bold text-sm sm:text-base tracking-wide">SOAL 2 – MUSYAWARAH MENYELESAIKAN MASALAH</h2>
+                    <span class="text-xs bg-white/15 px-2.5 py-1 rounded-full font-medium">Maks. 30 Poin</span>
+                </div>
+                
+                <div class="p-5 sm:p-6 space-y-5">
+                    <!-- Teks Cerita -->
+                    <div class="bg-slate-50 border-l-4 border-red-500 p-4 rounded-r-xl text-sm sm:text-base text-slate-700 leading-relaxed space-y-3">
+                        <p>Warga sebuah lingkungan berencana mengadakan kegiatan perbaikan jalan. Dalam rapat warga, muncul beberapa pendapat mengenai waktu pelaksanaan dan cara mengumpulkan dana.</p>
+                        <p>Sebagian warga mengusulkan agar kegiatan dilakukan pada hari Sabtu, sedangkan warga lainnya mengusulkan hari Minggu. Ketua RT memberikan kesempatan kepada seluruh warga untuk menyampaikan pendapatnya.</p>
+                        <p>Setelah mendengarkan berbagai usulan, warga bermusyawarah dan akhirnya menyepakati waktu pelaksanaan serta cara pengumpulan dana. Warga yang memiliki kemampuan lebih juga bersedia membantu warga yang kurang mampu agar semua dapat berpartisipasi.</p>
+                    </div>
+
+                    <!-- Pertanyaan Panduan -->
+                    <div class="text-sm text-slate-600 bg-blue-50/70 border border-blue-100 p-3.5 rounded-xl">
+                        <p class="font-semibold text-blue-900 mb-1">Pertanyaan:</p>
+                        <p>a. Identifikasilah <strong>3 nilai Pancasila</strong> yang tampak dalam kegiatan tersebut. Tuliskan sila yang sesuai!</p>
+                        <p>b. Jelaskan perilaku atau tindakan dalam cerita yang mencerminkan masing-masing nilai Pancasila tersebut!</p>
+                    </div>
+
+                    <!-- Input 3 Pasangan Sila & Penjelasan -->
+                    <div class="space-y-4">
+                        <!-- Nilai 1 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-red-600">Temuan Nilai Pancasila ke-1</span>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">a. Sila Pancasila yang sesuai:</label>
+                                <select id="q2_sila_1" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                                    <option value="">-- Pilih Sila Pancasila --</option>
+                                    <option value="1">Sila ke-1: Ketuhanan Yang Maha Esa</option>
+                                    <option value="2">Sila ke-2: Kemanusiaan yang Adil dan Beradab</option>
+                                    <option value="3">Sila ke-3: Persatuan Indonesia</option>
+                                    <option value="4">Sila ke-4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</option>
+                                    <option value="5">Sila ke-5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">b. Penjelasan perilaku/tindakan dalam cerita:</label>
+                                <textarea id="q2_desc_1" rows="2" placeholder="Tuliskan perilaku warga yang mencerminkan sila yang Anda pilih..." 
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Nilai 2 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-red-600">Temuan Nilai Pancasila ke-2</span>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">a. Sila Pancasila yang sesuai:</label>
+                                <select id="q2_sila_2" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                                    <option value="">-- Pilih Sila Pancasila --</option>
+                                    <option value="1">Sila ke-1: Ketuhanan Yang Maha Esa</option>
+                                    <option value="2">Sila ke-2: Kemanusiaan yang Adil dan Beradab</option>
+                                    <option value="3">Sila ke-3: Persatuan Indonesia</option>
+                                    <option value="4">Sila ke-4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</option>
+                                    <option value="5">Sila ke-5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">b. Penjelasan perilaku/tindakan dalam cerita:</label>
+                                <textarea id="q2_desc_2" rows="2" placeholder="Tuliskan perilaku warga yang mencerminkan sila yang Anda pilih..." 
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Nilai 3 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-red-600">Temuan Nilai Pancasila ke-3</span>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">a. Sila Pancasila yang sesuai:</label>
+                                <select id="q2_sila_3" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                                    <option value="">-- Pilih Sila Pancasila --</option>
+                                    <option value="1">Sila ke-1: Ketuhanan Yang Maha Esa</option>
+                                    <option value="2">Sila ke-2: Kemanusiaan yang Adil dan Beradab</option>
+                                    <option value="3">Sila ke-3: Persatuan Indonesia</option>
+                                    <option value="4">Sila ke-4: Kerakyatan yang Dipimpin oleh Hikmat Kebijaksanaan dalam Permusyawaratan/Perwakilan</option>
+                                    <option value="5">Sila ke-5: Keadilan Sosial bagi Seluruh Rakyat Indonesia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">b. Penjelasan perilaku/tindakan dalam cerita:</label>
+                                <textarea id="q2_desc_3" rows="2" placeholder="Tuliskan perilaku warga yang mencerminkan sila yang Anda pilih..." 
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ==================== SOAL 3 ==================== -->
+            <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-800 text-white px-5 py-3.5 flex items-center justify-between">
+                    <h2 class="font-bold text-sm sm:text-base tracking-wide">SOAL 3 – KEGIATAN MEMBANTU KORBAN BANJIR</h2>
+                    <span class="text-xs bg-white/15 px-2.5 py-1 rounded-full font-medium">Maks. 40 Poin</span>
+                </div>
+                
+                <div class="p-5 sm:p-6 space-y-5">
+                    <!-- Teks Cerita -->
+                    <div class="bg-slate-50 border-l-4 border-red-500 p-4 rounded-r-xl text-sm sm:text-base text-slate-700 leading-relaxed space-y-3">
+                        <p>Suatu daerah mengalami banjir yang menyebabkan beberapa warga kehilangan tempat tinggal dan kesulitan memenuhi kebutuhan sehari-hari.</p>
+                        <p>Masyarakat di daerah lain kemudian mengadakan kegiatan pengumpulan bantuan. Warga yang berbeda agama dan suku ikut berpartisipasi tanpa membeda-bedakan para korban.</p>
+                        <p>Sebelum menyalurkan bantuan, panitia mengadakan musyawarah untuk menentukan jenis bantuan yang dibutuhkan dan cara pembagiannya. Mereka kemudian membagikan makanan, pakaian, obat-obatan, dan kebutuhan lainnya berdasarkan kondisi serta kebutuhan setiap keluarga.</p>
+                        <p>Seluruh warga bekerja sama mengumpulkan dan menyalurkan bantuan dengan penuh kepedulian.</p>
+                    </div>
+
+                    <!-- Pertanyaan Panduan -->
+                    <div class="text-sm text-slate-600 bg-blue-50/70 border border-blue-100 p-3.5 rounded-xl">
+                        <p class="font-semibold text-blue-900 mb-1">Pertanyaan:</p>
+                        <p>a. Identifikasilah <strong>kelima nilai Pancasila</strong> yang tampak dalam kegiatan tersebut. Tuliskan sila pertama sampai sila kelima!</p>
+                        <p>b. Jelaskan perilaku atau tindakan dalam cerita yang mencerminkan masing-masing dari kelima nilai Pancasila tersebut!</p>
+                    </div>
+
+                    <!-- Input Kelima Sila -->
+                    <div class="space-y-4">
+                        <!-- Sila 1 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-red-600">1. Sila Pertama</span>
+                            </div>
+                            <input type="text" id="q3_sila_1" placeholder="Tuliskan bunyi Sila ke-1..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                            <textarea id="q3_desc_1" rows="2" placeholder="Jelaskan perilaku dalam cerita yang mencerminkan Sila ke-1..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <!-- Sila 2 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-red-600">2. Sila Kedua</span>
+                            </div>
+                            <input type="text" id="q3_sila_2" placeholder="Tuliskan bunyi Sila ke-2..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                            <textarea id="q3_desc_2" rows="2" placeholder="Jelaskan perilaku dalam cerita yang mencerminkan Sila ke-2..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <!-- Sila 3 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-red-600">3. Sila Ketiga</span>
+                            </div>
+                            <input type="text" id="q3_sila_3" placeholder="Tuliskan bunyi Sila ke-3..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                            <textarea id="q3_desc_3" rows="2" placeholder="Jelaskan perilaku dalam cerita yang mencerminkan Sila ke-3..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <!-- Sila 4 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-red-600">4. Sila Keempat</span>
+                            </div>
+                            <input type="text" id="q3_sila_4" placeholder="Tuliskan bunyi Sila ke-4..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                            <textarea id="q3_desc_4" rows="2" placeholder="Jelaskan perilaku dalam cerita yang mencerminkan Sila ke-4..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <!-- Sila 5 -->
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-red-600">5. Sila Kelima</span>
+                            </div>
+                            <input type="text" id="q3_sila_5" placeholder="Tuliskan bunyi Sila ke-5..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                            <textarea id="q3_desc_5" rows="2" placeholder="Jelaskan perilaku dalam cerita yang mencerminkan Sila ke-5..." 
+                                class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm text-slate-800 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Tombol Submit -->
+            <div class="pt-2 space-y-3">
+                <button onclick="submitAssessment()" 
+                    class="w-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-emerald-600/20 transition transform active:scale-[0.99] text-base sm:text-lg flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Selesai & Lihat Nilai Akhir</span>
+                </button>
+                <button onclick="backToIntro()" class="w-full text-slate-500 hover:text-slate-700 text-sm font-medium py-2">
+                    &larr; Ubah Identitas Siswa
+                </button>
+            </div>
+        </section>
+
+        <!-- VIEW 3: HASIL & REKAPITULASI NILAI -->
+        <section id="result-section" class="hidden space-y-6 fade-in">
+            
+            <!-- Banner Instruksi Screenshot (Sangat Penting untuk Bukti ke Guru) -->
+            <div class="bg-amber-50 border-2 border-amber-400 rounded-2xl p-4 sm:p-5 shadow-sm flex items-start gap-3.5">
+                <div class="bg-amber-400 text-amber-950 p-2.5 rounded-xl shrink-0 mt-0.5">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-amber-950 text-base">PENTING: Bukti Penyelesaian Tugas</h3>
+                    <p class="text-sm text-amber-900 mt-1 leading-relaxed">
+                        Silakan <strong>ambil tangkapan layar (Screenshot)</strong> halaman hasil nilai ini (pastikan Nama, Kelas, Waktu Selesai, dan Nilai Akhir terlihat jelas), lalu <strong>kirimkan ke guru</strong> Anda melalui WhatsApp atau Google Classroom.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kartu Sertifikat / Rapor Hasil -->
+            <div id="printable-result" class="bg-white rounded-3xl shadow-md border border-slate-200 overflow-hidden">
+                <!-- Top Header Kartu -->
+                <div class="bg-slate-900 text-white p-6 text-center relative overflow-hidden">
+                    <div class="relative z-10">
+                        <span class="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                            Hasil Asesmen Formatif PPKn
+                        </span>
+                        <h2 id="res-name" class="text-xl sm:text-2xl font-extrabold tracking-tight">Nama Siswa</h2>
+                        <p id="res-class" class="text-slate-300 text-sm font-medium mt-0.5">Paket B - Kelas X</p>
+                        
+                        <!-- Waktu Selesai -->
+                        <div class="mt-4 inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-xl text-xs sm:text-sm text-slate-200 border border-white/10">
+                            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Selesai pada: <strong id="res-timestamp" class="text-white"></strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skor Akhir Lingkaran/Besar -->
+                <div class="p-6 sm:p-8 text-center border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Nilai Akhir Anda</p>
+                    <div class="inline-flex items-baseline justify-center">
+                        <span id="res-total-score" class="text-6xl sm:text-7xl font-black text-red-600 tracking-tighter">0</span>
+                        <span class="text-xl sm:text-2xl font-bold text-slate-400 ml-1">/ 100</span>
+                    </div>
+                    <div class="mt-3">
+                        <span id="res-predicate" class="inline-block px-4 py-1.5 rounded-full text-sm font-bold bg-emerald-100 text-emerald-800">
+                            Predikat
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Tabel Rekapitulasi Nilai Sesuai Rubrik -->
+                <div class="p-5 sm:p-7 space-y-4">
+                    <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                        Rekapitulasi Nilai Peserta Didik
+                    </h3>
+
+                    <div class="overflow-hidden rounded-2xl border border-slate-200">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700 text-xs sm:text-sm uppercase">
+                                    <th class="py-3 px-4 font-bold">Komponen</th>
+                                    <th class="py-3 px-4 font-bold text-center">Skor Maksimal</th>
+                                    <th class="py-3 px-4 font-bold text-center">Skor Perolehan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-sm sm:text-base">
+                                <tr>
+                                    <td class="py-3.5 px-4 font-medium text-slate-800">Soal 1 <span class="block text-xs text-slate-500 font-normal">Kerukunan dalam Keberagaman</span></td>
+                                    <td class="py-3.5 px-4 text-center text-slate-600">30</td>
+                                    <td id="table-score-1" class="py-3.5 px-4 text-center font-bold text-slate-900">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3.5 px-4 font-medium text-slate-800">Soal 2 <span class="block text-xs text-slate-500 font-normal">Musyawarah Menyelesaikan Masalah</span></td>
+                                    <td class="py-3.5 px-4 text-center text-slate-600">30</td>
+                                    <td id="table-score-2" class="py-3.5 px-4 text-center font-bold text-slate-900">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3.5 px-4 font-medium text-slate-800">Soal 3 <span class="block text-xs text-slate-500 font-normal">Kegiatan Membantu Korban Banjir</span></td>
+                                    <td class="py-3.5 px-4 text-center text-slate-600">40</td>
+                                    <td id="table-score-3" class="py-3.5 px-4 text-center font-bold text-slate-900">0</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="bg-red-50/80 font-extrabold text-slate-900 text-base">
+                                    <td class="py-3.5 px-4">Jumlah Nilai Akhir</td>
+                                    <td class="py-3.5 px-4 text-center text-slate-600">100</td>
+                                    <td id="table-score-total" class="py-3.5 px-4 text-center text-red-600 text-lg">0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <!-- Rincian Evaluasi & Pembahasan Singkat (Collapsible / Accordion) -->
+                    <div class="pt-3">
+                        <button onclick="toggleFeedback()" class="w-full flex items-center justify-between bg-slate-100 hover:bg-slate-200/70 px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 transition">
+                            <span>Lihat Rincian Penilaian & Kunci Jawaban</span>
+                            <svg id="feedback-chevron" class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="feedback-details" class="hidden mt-3 space-y-4 text-sm text-slate-700 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                            <!-- Diisi dinamis oleh JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Aksi Tambahan -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <button onclick="copyResultSummary()" class="flex-1 bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3.5 px-5 rounded-2xl transition flex items-center justify-center gap-2 text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    <span>Salin Teks Laporan Nilai</span>
+                </button>
+                <button onclick="resetAssessment()" class="sm:w-auto bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-semibold py-3.5 px-5 rounded-2xl transition text-sm">
+                    Ulangi Asesmen
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // =========================================================================
+        // SISTEM NAVIGASI & UI HELPER
+        // =========================================================================
+        let toastTimeout;
+        function showToast(message) {
+            const toastBox = document.getElementById('toast-box');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toastBox.classList.remove('hidden');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toastBox.classList.add('hidden');
+            }, 4000);
+        }
+
+        function startAssessment() {
+            const name = document.getElementById('student-name').value.trim();
+            const studentClass = document.getElementById('student-class').value;
+
+            if (!name) {
+                showToast("Mohon isi Nama Lengkap Anda terlebih dahulu.");
+                document.getElementById('student-name').focus();
+                return;
+            }
+            if (!studentClass) {
+                showToast("Mohon pilih Kelas / Tingkatan Anda.");
+                document.getElementById('student-class').focus();
+                return;
+            }
+
+            document.getElementById('display-name').textContent = name;
+            document.getElementById('display-class').textContent = studentClass;
+
+            document.getElementById('intro-section').classList.add('hidden');
+            document.getElementById('quiz-section').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToIntro() {
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('intro-section').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleFeedback() {
+            const details = document.getElementById('feedback-details');
+            const chevron = document.getElementById('feedback-chevron');
+            details.classList.toggle('hidden');
+            chevron.classList.toggle('rotate-180');
+        }
+
+        // =========================================================================
+        // ENGINE PENILAIAN OTOMATIS BERDASARKAN RUBRIK
+        // =========================================================================
+
+        /**
+         * Evaluasi kualitas penjelasan teks siswa berdasarkan kata kunci semantik.
+         * Mengembalikan rasio skor penjelasan:
+         * 1.0  = Benar dan tepat (Skor penuh penjelasan)
+         * 0.5  = Benar tetapi kurang lengkap (Setengah skor penjelasan)
+         * 0.0  = Tidak sesuai atau kosong
+         */
+        function evaluateExplanationQuality(text, primaryKeywords, secondaryKeywords) {
+            if (!text || text.trim().length < 4) return 0;
+            
+            const cleanText = text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, " ");
+            const words = cleanText.split(/\s+/).filter(w => w.length > 0);
+            
+            // Cek kecocokan kata kunci utama (tindakan spesifik dalam cerita)
+            let primaryMatchCount = 0;
+            for (const kw of primaryKeywords) {
+                if (cleanText.includes(kw)) {
+                    primaryMatchCount++;
+                }
+            }
+
+            // Cek kecocokan kata kunci pendukung (konteks umum nilai Pancasila)
+            let secondaryMatchCount = 0;
+            for (const kw of secondaryKeywords) {
+                if (cleanText.includes(kw)) {
+                    secondaryMatchCount++;
+                }
+            }
+
+            // Jika mengandung kata kunci tindakan utama dan kalimat cukup jelas (>= 3 kata)
+            if (primaryMatchCount >= 1 && words.length >= 3) {
+                return 1.0; // Benar dan tepat -> Skor penuh
+            }
+            
+            // Jika hanya menyebutkan kata kunci umum/singkat atau sebagian kecil
+            if (primaryMatchCount >= 1 || secondaryMatchCount >= 1) {
+                return 0.5; // Benar tetapi kurang lengkap -> Setengah skor
+            }
+
+            return 0.0; // Tidak sesuai
+        }
+
+        /**
+         * Deteksi nomor sila dari input teks bebas siswa (khusus Soal 3)
+         */
+        function detectSilaFromText(text, expectedSilaNumber) {
+            if (!text) return false;
+            const t = text.toLowerCase().trim();
+            
+            const patterns = {
+                1: ["1", "pertama", "satu", "ketuhanan", "tuhan", "maha esa"],
+                2: ["2", "kedua", "dua", "kemanusiaan", "adil dan beradab", "manusia"],
+                3: ["3", "ketiga", "tiga", "persatuan", "indonesia", "bersatu"],
+                4: ["4", "keempat", "empat", "kerakyatan", "hikmat", "permusyawaratan", "musyawarah", "perwakilan"],
+                5: ["5", "kelima", "lima", "keadilan", "sosial", "rakyat"]
+            };
+
+            return patterns[expectedSilaNumber].some(keyword => t.includes(keyword));
+        }
+
+        /**
+         * Penilaian Soal 1 & Soal 2 (Urutan input siswa bebas untuk 3 nilai target)
+         * Sesuai Pedoman Pemberian Skor:
+         * - Sila benar + Penjelasan tepat = 5 + 5 = 10
+         * - Sila benar + Penjelasan kurang lengkap = 5 + 2.5 = 7.5
+         * - Sila benar + Penjelasan salah/kosong = 5 + 0 = 5
+         * - Sila salah + Penjelasan menunjukkan pemahaman yang sesuai = 0 + 2.5 = 2.5
+         * - Tidak sesuai / kosong = 0
+         */
+        function gradeFlexibleQuestion(studentEntries, rubricTargets) {
+            let totalScore = 0;
+            let matchedTargetIndices = new Set();
+            let breakdown = [];
+
+            // Tahap 1: Cocokkan entri yang Silanya benar dengan target rubrik
+            studentEntries.forEach((entry, idx) => {
+                const targetIdx = rubricTargets.findIndex((t, i) => !matchedTargetIndices.has(i) && t.sila === entry.sila);
+                
+                if (targetIdx !== -1) {
+                    matchedTargetIndices.add(targetIdx);
+                    const target = rubricTargets[targetIdx];
+                    const descRatio = evaluateExplanationQuality(entry.desc, target.primaryKw, target.secondaryKw);
+                    
+                    const silaPts = target.maxSilaPts; // 5 poin
+                    const descPts = target.maxDescPts * descRatio; // 5, 2.5, atau 0
+                    const itemTotal = silaPts + descPts;
+                    
+                    totalScore += itemTotal;
+                    breakdown.push({
+                        targetTitle: target.title,
+                        studentSila: entry.sila ? `Sila ke-${entry.sila}` : "Tidak dipilih",
+                        studentDesc: entry.desc || "(Kosong)",
+                        earned: itemTotal,
+                        max: target.maxSilaPts + target.maxDescPts,
+                        note: descRatio === 1 ? "Sila & penjelasan tepat" : (descRatio === 0.5 ? "Sila benar, penjelasan kurang lengkap" : "Sila benar, penjelasan belum tepat")
+                    });
+                } else {
+                    // Tahap 2: Sila salah/kosong, cek apakah penjelasan menunjukkan pemahaman salah satu target yang belum terpakai
+                    let fallbackTargetIdx = -1;
+                    let bestRatio = 0;
+
+                    rubricTargets.forEach((t, i) => {
+                        if (!matchedTargetIndices.has(i)) {
+                            const r = evaluateExplanationQuality(entry.desc, t.primaryKw, t.secondaryKw);
+                            if (r > bestRatio) {
+                                bestRatio = r;
+                                fallbackTargetIdx = i;
+                            }
+                        }
+                    });
+
+                    if (fallbackTargetIdx !== -1 && bestRatio > 0) {
+                        matchedTargetIndices.add(fallbackTargetIdx);
+                        const target = rubricTargets[fallbackTargetIdx];
+                        // Pedoman: Sila salah, tetapi penjelasan sesuai -> 0 + setengah skor penjelasan
+                        const descPts = target.maxDescPts * 0.5;
+                        totalScore += descPts;
+                        breakdown.push({
+                            targetTitle: target.title,
+                            studentSila: entry.sila ? `Sila ke-${entry.sila} (Kurang tepat)` : "Tidak dipilih",
+                            studentDesc: entry.desc,
+                            earned: descPts,
+                            max: target.maxSilaPts + target.maxDescPts,
+                            note: "Sila kurang tepat, namun penjelasan menunjukkan pemahaman yang sesuai"
+                        });
+                    } else {
+                        breakdown.push({
+                            targetTitle: "Jawaban Siswa #" + (idx + 1),
+                            studentSila: entry.sila ? `Sila ke-${entry.sila}` : "Tidak dipilih",
+                            studentDesc: entry.desc || "(Kosong)",
+                            earned: 0,
+                            max: 10,
+                            note: "Jawaban belum sesuai dengan rubrik soal"
+                        });
+                    }
+                }
+            });
+
+            return { score: totalScore, breakdown };
+        }
+
+        function submitAssessment() {
+            // Definisi Rubrik Soal 1 (Maks 30: 3 nilai x 10 poin)
+            const rubricQ1 = [
+                {
+                    sila: "1",
+                    title: "Sila ke-1: Menghormati warga yang sedang beribadah",
+                    maxSilaPts: 5,
+                    maxDescPts: 5,
+                    primaryKw: ["ibadah", "beribadah", "mengganggu", "agama", "kesempatan", "toleransi", "sembahyang"],
+                    secondaryKw: ["hormat", "menghormati", "keyakinan", "tuhan"]
+                },
+                {
+                    sila: "3",
+                    title: "Sila ke-3: Bekerja sama tanpa membedakan agama dan asal daerah",
+                    maxSilaPts: 5,
+                    maxDescPts: 5,
+                    primaryKw: ["gotong royong", "kerja sama", "bekerja sama", "membersihkan", "membedakan", "asal daerah", "suku", "bersatu"],
+                    secondaryKw: ["lingkungan", "bersama", "persatuan", "rukun"]
+                },
+                {
+                    sila: "2",
+                    title: "Sila ke-2: Saling membantu warga yang mengalami kesulitan",
+                    maxSilaPts: 5,
+                    maxDescPts: 5,
+                    primaryKw: ["membantu", "bantu", "kesulitan", "susah", "tetangga", "tolong", "menolong", "peduli"],
+                    secondaryKw: ["kemanusiaan", "sesama", "kasih", "empati"]
+                }
+            ];
+
+            // Definisi Rubrik Soal 2 (Maks 30: 3 nilai x 10 poin)
+            const rubricQ2 = [
+                {
+                    sila: "4",
+                    title: "Sila ke-4: Memberikan kesempatan berpendapat dan bermusyawarah",
+                    maxSilaPts: 5,
+                    maxDescPts: 5,
+                    primaryKw: ["musyawarah", "bermusyawarah", "pendapat", "usulan", "mengusulkan", "rapat", "menyepakati", "sepakat", "mufakat", "kesempatan"],
+                    secondaryKw: ["diskusi", "keputusan", "rt", "berbicara"]
+                },
+                {
+                    sila: "5",
+                    title: "Sila ke-5: Membantu warga kurang mampu agar dapat berpartisipasi",
+                    maxSilaPts: 5,
+                    maxDescPts: 5,
+                    primaryKw: ["kurang mampu", "kemampuan lebih", "membantu warga", "berpartisipasi", "adil", "dana", "keadilan", "meringankan"],
+                    secondaryKw: ["mampu", "membantu", "sosial", "merata"]
+                },
+                {
+                    sila: "3",
+                    title: "Sila ke-3: Bekerja sama demi kepentingan bersama",
+                    maxSilaPts: 5,
+                    maxDescPts: 5,
+                    primaryKw: ["perbaikan jalan", "kerja sama", "bekerja sama", "kepentingan bersama", "gotong royong", "bersama", "kompak"],
+                    secondaryKw: ["persatuan", "lingkungan", "warga", "bersatu"]
+                }
+            ];
+
+            // Definisi Rubrik Soal 3 (Maks 40: 5 nilai x 8 poin -> 4 sila + 4 penjelasan)
+            const rubricQ3 = [
+                {
+                    silaNum: 1,
+                    title: "Sila ke-1: Menghormati perbedaan agama dan keyakinan",
+                    primaryKw: ["agama", "berbeda agama", "keyakinan", "membeda", "toleransi", "menghormati"],
+                    secondaryKw: ["tuhan", "ibadah", "ikut"]
+                },
+                {
+                    silaNum: 2,
+                    title: "Sila ke-2: Peduli dan membantu korban banjir",
+                    primaryKw: ["korban", "banjir", "peduli", "kepedulian", "membantu", "bantuan", "kemanusiaan", "menolong"],
+                    secondaryKw: ["kesulitan", "makanan", "pakaian", "obat"]
+                },
+                {
+                    silaNum: 3,
+                    title: "Sila ke-3: Bekerja sama tanpa membedakan suku dan agama",
+                    primaryKw: ["kerja sama", "bekerja sama", "suku", "membeda", "bersatu", "seluruh warga", "partisipasi", "berpartisipasi"],
+                    secondaryKw: ["persatuan", "bersama", "gotong royong"]
+                },
+                {
+                    silaNum: 4,
+                    title: "Sila ke-4: Bermusyawarah menentukan bantuan dan pembagiannya",
+                    primaryKw: ["musyawarah", "bermusyawarah", "menentukan", "rapat", "panitia", "diskusi", "sepakat"],
+                    secondaryKw: ["jenis bantuan", "cara pembagian", "keputusan"]
+                },
+                {
+                    silaNum: 5,
+                    title: "Sila ke-5: Membagikan bantuan secara adil sesuai kebutuhan",
+                    primaryKw: ["adil", "kebutuhan", "kondisi", "sesuai", "membagikan", "merata", "keluarga", "keadilan"],
+                    secondaryKw: ["pembagian", "bantuan", "makanan"]
+                }
+            ];
+
+            // Ambil Jawaban Soal 1
+            const q1Entries = [
+                { sila: document.getElementById('q1_sila_1').value, desc: document.getElementById('q1_desc_1').value.trim() },
+                { sila: document.getElementById('q1_sila_2').value, desc: document.getElementById('q1_desc_2').value.trim() },
+                { sila: document.getElementById('q1_sila_3').value, desc: document.getElementById('q1_desc_3').value.trim() }
+            ];
+
+            // Ambil Jawaban Soal 2
+            const q2Entries = [
+                { sila: document.getElementById('q2_sila_1').value, desc: document.getElementById('q2_desc_1').value.trim() },
+                { sila: document.getElementById('q2_sila_2').value, desc: document.getElementById('q2_desc_2').value.trim() },
+                { sila: document.getElementById('q2_sila_3').value, desc: document.getElementById('q2_desc_3').value.trim() }
+            ];
+
+            // Hitung Skor Soal 1 & 2
+            const resultQ1 = gradeFlexibleQuestion(q1Entries, rubricQ1);
+            const resultQ2 = gradeFlexibleQuestion(q2Entries, rubricQ2);
+
+            // Hitung Skor Soal 3 (Sila 1 s.d. 5 berurutan)
+            let scoreQ3 = 0;
+            let breakdownQ3 = [];
+
+            rubricQ3.forEach((item) => {
+                const silaText = document.getElementById(`q3_sila_${item.silaNum}`).value.trim();
+                const descText = document.getElementById(`q3_desc_${item.silaNum}`).value.trim();
+
+                const isSilaCorrect = detectSilaFromText(silaText, item.silaNum);
+                const descRatio = evaluateExplanationQuality(descText, item.primaryKw, item.secondaryKw);
+
+                let silaPts = isSilaCorrect ? 4 : 0;
+                let descPts = 0;
+                let note = "";
+
+                if (isSilaCorrect) {
+                    descPts = 4 * descRatio; // 4, 2, atau 0
+                    note = descRatio === 1 ? "Sila & penjelasan tepat" : (descRatio === 0.5 ? "Sila benar, penjelasan kurang lengkap" : "Sila benar, penjelasan belum tepat");
+                } else {
+                    if (descRatio > 0) {
+                        descPts = 2; // Pedoman: Sila salah, tetapi penjelasan sesuai -> setengah skor penjelasan (2 poin)
+                        note = "Penulisan sila kurang tepat, namun penjelasan sesuai";
+                    } else {
+                        note = "Jawaban belum sesuai atau kosong";
+                    }
+                }
+
+                const earned = silaPts + descPts;
+                scoreQ3 += earned;
+
+                breakdownQ3.push({
+                    targetTitle: item.title,
+                    studentSila: silaText || "(Kosong)",
+                    studentDesc: descText || "(Kosong)",
+                    earned: earned,
+                    max: 8,
+                    note: note
+                });
+            });
+
+            // Total Akhir
+            const finalScore = resultQ1.score + resultQ2.score + scoreQ3;
+
+            // Format Waktu Selesai (Waktu Lokal Indonesia)
+            const now = new Date();
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedTimestamp = `${now.toLocaleDateString('id-ID', dateOptions)} • Pukul ${now.toLocaleTimeString('id-ID', timeOptions)}`;
+
+            // Tampilkan Data di Halaman Hasil
+            document.getElementById('res-name').textContent = document.getElementById('student-name').value.trim();
+            document.getElementById('res-class').textContent = document.getElementById('student-class').value;
+            document.getElementById('res-timestamp').textContent = formattedTimestamp;
+
+            document.getElementById('res-total-score').textContent = finalScore;
+            document.getElementById('table-score-1').textContent = resultQ1.score;
+            document.getElementById('table-score-2').textContent = resultQ2.score;
+            document.getElementById('table-score-3').textContent = scoreQ3;
+            document.getElementById('table-score-total').textContent = finalScore;
+
+            // Predikat
+            const predEl = document.getElementById('res-predicate');
+            if (finalScore >= 85) {
+                predEl.textContent = "Sangat Baik (Tuntas)";
+                predEl.className = "inline-block px-4 py-1.5 rounded-full text-sm font-bold bg-emerald-100 text-emerald-800";
+            } else if (finalScore >= 70) {
+                predEl.textContent = "Baik (Tuntas)";
+                predEl.className = "inline-block px-4 py-1.5 rounded-full text-sm font-bold bg-blue-100 text-blue-800";
+            } else if (finalScore >= 55) {
+                predEl.textContent = "Cukup (Perlu Penguatan)";
+                predEl.className = "inline-block px-4 py-1.5 rounded-full text-sm font-bold bg-amber-100 text-amber-800";
+            } else {
+                predEl.textContent = "Perlu Bimbingan Lanjut";
+                predEl.className = "inline-block px-4 py-1.5 rounded-full text-sm font-bold bg-red-100 text-red-800";
+            }
+
+            // Render Rincian Feedback
+            renderFeedbackDetails(resultQ1.breakdown, resultQ2.breakdown, breakdownQ3);
+
+            // Pindah ke Halaman Hasil
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('result-section').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderFeedbackDetails(b1, b2, b3) {
+            const container = document.getElementById('feedback-details');
+            
+            const buildSection = (title, items) => {
+                let html = `<div class="space-y-2">
+                    <h4 class="font-bold text-slate-900 border-b border-slate-200 pb-1">${title}</h4>`;
+                items.forEach(item => {
+                    const badgeColor = item.earned === item.max ? 'bg-emerald-100 text-emerald-800' : (item.earned > 0 ? 'bg-amber-100 text-amber-800' : 'bg-red-100 text-red-800');
+                    html += `
+                    <div class="bg-white p-3 rounded-xl border border-slate-200/80 text-xs space-y-1">
+                        <div class="flex justify-between items-start gap-2">
+                            <span class="font-semibold text-slate-800">${item.targetTitle}</span>
+                            <span class="px-2 py-0.5 rounded-md font-bold shrink-0 ${badgeColor}">${item.earned} / ${item.max}</span>
+                        </div>
+                        <p class="text-slate-500"><strong>Sila Anda:</strong> ${item.studentSila}</p>
+                        <p class="text-slate-500"><strong>Penjelasan Anda:</strong> ${item.studentDesc}</p>
+                        <p class="text-slate-600 italic">Catatan: ${item.note}</p>
+                    </div>`;
+                });
+                html += `</div>`;
+                return html;
+            };
+
+            container.innerHTML = 
+                buildSection("Rincian Soal 1 (Maks. 30 Poin)", b1) +
+                buildSection("Rincian Soal 2 (Maks. 30 Poin)", b2) +
+                buildSection("Rincian Soal 3 (Maks. 40 Poin)", b3);
+        }
+
+        function copyResultSummary() {
+            const name = document.getElementById('res-name').textContent;
+            const cls = document.getElementById('res-class').textContent;
+            const time = document.getElementById('res-timestamp').textContent;
+            const s1 = document.getElementById('table-score-1').textContent;
+            const s2 = document.getElementById('table-score-2').textContent;
+            const s3 = document.getElementById('table-score-3').textContent;
+            const total = document.getElementById('table-score-total').textContent;
+
+            const summaryText = 
+`*HASIL ASESMEN FORMATIF PPKN (PAKET B)*
+Topik: Penerapan Nilai-Nilai Pancasila
+------------------------------------
+Nama: ${name}
+Kelas: ${cls}
+Waktu Selesai: ${time}
+------------------------------------
+Skor Soal 1: ${s1} / 30
+Skor Soal 2: ${s2} / 30
+Skor Soal 3: ${s3} / 40
+*NILAI AKHIR: ${total} / 100*
+------------------------------------`;
+
+            const tempTextarea = document.createElement("textarea");
+            tempTextarea.value = summaryText;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempTextarea);
+
+            showToast("Laporan nilai berhasil disalin! Silakan tempel (paste) saat mengirim ke guru.");
+        }
+
+        function resetAssessment() {
+            // Reset semua input soal
+            document.querySelectorAll('#quiz-section select, #quiz-section input, #quiz-section textarea').forEach(el => {
+                el.value = "";
+            });
+            document.getElementById('feedback-details').classList.add('hidden');
+            document.getElementById('feedback-chevron').classList.remove('rotate-180');
+
+            document.getElementById('result-section').classList.add('hidden');
+            document.getElementById('intro-section').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
